@@ -1,0 +1,660 @@
+@import url('https://fonts.googleapis.com/css?family=Quantico:400,700|Roboto:300,400&display=swap');
+
+// variables
+$black: #1e1e1e; 
+$green: #78bc62; 
+$yellow: #ffd944; 
+$gray:  #102438;
+$lightGray: #f4f4f4;
+$white: #fff;
+$py: 100px 0;
+$transition: .3s ease;
+
+// mixins
+@mixin flex($justifyContent, $alignItems, $direction) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $direction;
+}
+
+@mixin btn($bg, $color, $border, $hoverColor) {
+    background: $bg;
+    color: $color;
+    font-family: 'Quantico', sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    margin-top: 40px;
+    &:hover {
+        border: 1px solid $border;
+        background: transparent;
+        color: $hoverColor;
+    }
+}
+
+// basic styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gray);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quantico', sans-serif;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 8rem;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 3rem;
+    @media (max-width: 767px) {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $gray;
+    transition: $transition;
+}
+
+ul {
+    list-style-type: none;
+}
+
+i {
+    color: $green;
+}
+
+.active {
+    border-bottom: 2px solid $green;
+}
+
+.container {
+    max-width: 80%;
+    margin: auto;
+    @media (max-width: 767px) {
+        width: 90%;;
+    }
+}
+
+hr {
+    border: none;
+    height: 2px;
+    width: 100%;
+    background-color: darken($white, 10%);
+    margin-bottom: 30px;
+}
+
+// nav
+nav {
+    @include flex(space-between, center, row);
+    padding: 0 30px 0 100px;
+    @media (max-width: 767px) {
+        @include flex(center, center, column);
+        padding: 10px 10px 0 10px;
+    }
+    @media (min-width: 768px) and (max-width: 1024px){
+        padding: 0 20px;
+    }
+    ul {
+        @include flex(space-between, center, row);
+        @media (max-width: 767px) {
+            @include flex(center, center, column);
+        }
+        a {
+            display: block;
+            padding: 25px;
+            border-bottom: 2px solid transparent;
+            &:hover {
+                border-bottom: 2px solid $green;
+            }  
+        }
+    }
+    .logo {
+        font-size: 1.6rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        &:hover {
+            color: $green;
+        }
+    }
+}
+
+// header
+header {
+    background: linear-gradient(rgba(30, 30, 30, .3), rgba(30, 30, 30, .3)), url(img/header.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 70vh;
+    color: $white;
+    text-align: right;
+    padding: 100px;
+    @media (max-width: 767px) {
+        padding: 60px;
+        text-align: center;
+    }
+    h1 {
+        @media (max-width: 1024px) {
+            font-size: 4.5rem;
+            line-height: 1.1;
+        }
+        @media (min-width: 768px) and (max-width: 1024px){
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+    }
+    p {
+        font-size: 1.3rem;
+    }
+    button {
+        @include btn($yellow, $black, $yellow, $white);
+    }
+}
+
+// services
+.services {
+    padding-bottom: 60px;
+    margin-top: -100px;
+    text-align: center;
+    @include flex(space-between, center, row);
+    @media (max-width: 767px) {
+        padding-bottom: 0;
+    }
+    article {
+        flex: 0 0 32%;
+        padding: 40px;
+        background: $white;
+        box-shadow: 0 0 30px lightgrey;
+        @media (max-width: 1024px) {
+           flex: 0 0 100%;
+           padding: 20px;
+           margin-top: 20px;
+        }
+        @media (min-width: 1024px) and (max-width: 1200px){
+           flex: 0 0 49%;
+           padding: 20px;
+           margin-top: 20px;
+        }
+        div {
+            padding: 40px;
+             @media (max-width: 767px) {
+                padding: 10px;
+            }
+        }
+    }
+    h3 {
+        font-size: 2rem;
+        color: $gray;
+    }
+}
+
+// works
+.works {
+    padding: $py;
+    text-align: center;
+    h2 {
+        color: $gray;
+    }
+    .gallery {
+        height: 840px;
+        @media (max-width: 1400px) {
+            height: auto;
+        }
+        @include flex(space-between, flex-start, row);
+        article {
+            div {
+                height: 420px;
+            }
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        article:nth-child(1) {
+            flex: 1;  
+            @include flex(space-between, center, row);
+            @media (max-width: 1024px) {
+                flex: 0 0 100%;
+            }  
+            @media (min-width: 1024px) and (max-width: 1400px) {
+                flex: 0 0 50%;
+            } 
+            div {
+                flex: 0 0 100%;
+                @media (min-width:768px) and (max-width: 1024px) {
+                    flex: 0 0 50%;
+                }
+            }     
+        }
+        article:nth-child(2) {
+            flex: 2;
+            img {
+                height: 840px;
+            }
+            @media (max-width: 1024px) {
+                flex: 0 0 100%;
+            }
+            @media (min-width: 1024px) and (max-width: 1400px) {
+                flex: 0 0 50%;
+            }
+        }
+        article:nth-child(3) {
+            flex: 2;    
+            @media (max-width: 1400px) {
+                flex: 0 0 100%;
+            }
+            div.div-container {
+                @include flex(space-between, center, row);
+                @media (max-width: 1400px) {
+                    height: auto;
+                }
+                div {
+                    flex: 0 0 50%;
+                    @media (max-width:768px) {
+                        flex: 0 0 100%;
+                    }
+                }
+            }
+        }
+    }
+    button {
+        @include btn($green, $black, $green, $black);
+    }  
+}
+
+// footer
+footer {
+    background: $black;
+    color: $white;
+    padding: $py;
+    @media (max-width: 767px) {
+        text-align: center;
+    }
+    div:first-child {
+        @include flex(space-between, flex-start, row);
+        article {
+            flex: 0 0 20%;
+            @media (max-width: 767px) {
+                flex: 0 0 100%;
+                margin-bottom: 50px;
+            }
+            @media (min-width: 768px) and (max-width: 1400px){
+                flex: 0 0 50%;
+                margin-bottom: 50px;
+                padding: 10px;
+            }
+            img {
+                width: 80px;
+                display: inline;
+            }
+            .links {
+                @include flex(space-between, center, row);
+                padding: 0;
+                text-align: left;
+                @media (max-width: 767px) {
+                    text-align: center;
+                }
+                 a {
+                    flex: 0 0 50%;
+                    &:hover {
+                        color: $green;
+                    }
+                 }
+            }
+        }
+        h3 {
+            font-size: 1.3rem;
+            &>i {
+                font-size: 1.3rem;
+            }
+        }
+        a {
+            color: $white;
+            text-transform: none;
+            i {
+                margin-right: 20px;
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+        form {
+            margin-top: 50px;
+            input {
+                padding: 8px;
+                border: 2px solid $green;
+                background: transparent;
+                outline: none;
+                color: $white;
+                font-size: 1rem;
+                width: 170px;
+            }
+            button {
+                background: $green;
+                padding: 8px;
+                border: none;
+                text-align: center;
+                position: relative;
+                left: -5px;
+                top: 3px;
+                cursor: pointer;
+                i {
+                    color: $black;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+       
+    }
+    div:last-child {
+        text-align: center;
+        padding: 40px 100px 0 100px;
+        @media (max-width: 767px) {
+            padding: 0;
+        }
+        hr {
+            height: 1px;
+            background-color: darken($white, 50%);
+        }
+    }
+}
+
+// about
+.about {
+    @include flex(space-between, stretch, row);
+    .text, .image {
+        flex: 0 0 50%;
+        @media (max-width: 1200px) {
+            flex: 0 0 100%;
+        } 
+    }
+    .text {
+        background: $lightGray;
+        padding: 80px;
+        @media (max-width: 767px) {
+           padding: 80px 20px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            @media (max-width: 767px) {
+                line-height: 1.6;
+            } 
+        }
+        article {
+            margin-top: 60px;
+            @include flex(space-between, center, row);
+            div:first-child {
+                flex: 0 0 8%;
+                background-color: $white;
+                text-align: center;
+                i {
+                    font-size: 2rem;
+                    padding: 20px;
+                }
+            }
+            div:last-child {
+                flex: 0 0 88%;
+            }
+        }
+        h2,h3 {
+            margin-bottom: 0;
+            text-transform: uppercase;
+            color: $gray;
+        }   
+    }
+   .image {
+        background: url(img/about1.jpg);
+        background-position: right center;
+        @media (max-width: 1200px) {
+            background-position: right center;
+            background-size: cover;
+            height: 400px;
+        }
+    }  
+}
+
+// team
+.team {
+    padding: $py;
+    text-align: center;
+    color: $gray;
+    @media (max-width: 767px) {
+        padding: 70px 0;
+    }
+    article {
+        @include flex(space-between, center, row);
+        margin-top: 30px;
+        div {
+            flex: 0 0 22%;
+            @media (max-width: 767px) {
+                flex: 0 0 100%;
+                margin-bottom: 20px;
+            }
+            @media (min-width: 768px) and (max-width: 1200px){
+                flex: 0 0 48%;
+                margin-bottom: 20px;
+            }
+        }
+        .text {
+            background: $lightGray;
+            margin-top: 8px;
+            padding: 20px;
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            color: $gray;
+        }
+        h4 {
+            color: $green;
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 0;
+        }
+        i {
+            color: darken($lightGray, 40%);
+            margin: 10px;
+            &:hover {
+                color: $green;
+            }
+        }
+    }
+}
+
+// promote
+.promote {
+    background: linear-gradient(rgba(120, 188, 98, .6),rgba(120, 188, 98, .6) ),url(img/promote.jpg);
+    padding: $py;
+    color: $white;
+    text-align: center;
+    button {
+        @include btn($black, $white, $black, $black);
+    }
+}
+
+// clients
+.clients {
+    padding: $py;
+    text-align: center;
+    @media (max-width: 767px) {
+        padding: 60px 20px;
+    }
+    h2 {
+        color: $gray;
+    }
+    .container {
+        @include flex(space-between, center, row);
+        margin-top: 60px;
+        article {
+            flex: 0 0 30%;
+            text-align: left;
+            @media (max-width: 767px) {
+                flex: 0 0 100%;
+                margin-bottom: 20px;
+            }
+            @media (min-width: 768px) and (max-width: 1200px){
+                flex: 0 0 48%;
+                margin-bottom: 20px;
+            }
+            div {
+                @include flex(flex-start, flex-start, row);
+                border-top: 3px solid $lightGray;
+                padding: 20px 0;
+                @media (max-width: 767px) {
+                   @include flex(center, flex-start, row);
+                }
+                img {
+                    width: 180px;
+                    border-radius: 50%;
+                }
+                h3 {
+                    font-size: 1.4rem;
+                    margin: 40px 20px;
+                    text-align: right;
+                    color: $gray;
+                    span {
+                        font-family: 'Roboto', sans-serif; 
+                        font-size: 1.1rem;
+                        color: $green;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// pricing
+.pricingHeader {
+    background: linear-gradient(rgba(30, 30, 30, .3), rgba(30, 30, 30, .3)), url(img/header.jpg);
+    background-position: center;
+    height: 35vh;
+}
+.pricing {
+    padding: $py;
+    text-align: center;
+    color: $gray;
+    @media (max-width: 1024px) {
+        padding: 80px 10px;
+    }
+    h2 {
+        margin-bottom: 0;
+    }
+    .container {
+        @include flex(space-between, center, row);
+        margin-top: 30px;
+        article {
+            flex: 0 0 22%;
+            box-shadow: 0 0 10px lightgrey;
+            padding: 30px;
+            @media (max-width: 767px) {
+                flex: 0 0 100%;
+                margin-bottom: 20px;
+            } 
+            @media (min-width: 768px) and (max-width: 1200px) {
+                flex: 0 0 48%;
+                margin-bottom: 20px;
+            } 
+            h4 {
+                margin-bottom: 10px;
+            }
+            li {
+                margin-bottom: 15px;
+            }
+            button {
+                @include btn($green, $black, $black, $black);
+                font-weight: bold;
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+// contact
+.contact {
+    padding: $py;
+    @include flex(space-between, flex-start, row);
+    h2 {
+        color: $gray;
+    }
+    p {
+        margin-bottom: 20px;
+    }
+    article {
+        flex: 0 0 48%;
+        @media (max-width: 1200px) {
+            flex: 0 0 100%;
+        } 
+        div {
+            margin-bottom: 30px;
+            @include flex(space-between, center, row);
+            font-size: 1.3rem;
+            @media (max-width: 767px) {
+               margin-bottom: 20px;
+            } 
+            p:first-child {
+                flex: 0 0 8%;
+                @media (max-width: 767px) {
+                    flex: 0 0 100%;
+                }
+                i {
+                    font-size: 2.5rem; 
+                }
+            }
+            p:last-child {
+                flex: 0 0 90%;
+                @media (max-width: 767px) {
+                    flex: 0 0 100%;
+                }
+            }
+            span {
+                font-size: .9rem;
+            }
+        }
+    }
+    input, textarea {
+        border: 1px solid $green;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1rem;
+        outline: none;
+    }
+    textarea {
+        resize: none;
+    }
+    ::placeholder {
+        color: darken($lightGray, 20%);
+        font-size: 1rem;
+    }
+    button {
+        @include btn($green, $black, $black, $black);
+        margin-top: 10px;
+    }   
+}
+
